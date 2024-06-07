@@ -3,25 +3,32 @@ var router = express.Router();
 
 let messages = [
   {
-    id: 0,
+    id: 1,
     text: "Hi there!",
     user: "Amando",
     added: new Date()
   },
   {
-    id: 1,
+    id: 2,
     text: "Hello World!",
     user: "Charles",
     added: new Date()
   },
   {
-    id: 2,
+    id: 3,
     text: "General Kenobi!",
-    user: "Grievous",
+    user: "Stacy",
     added: new Date()
   }
-
 ];
+
+function setIds() {
+  let id = 1
+  for (let message of messages) {
+    message.id = id
+    id++
+  }
+}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -34,7 +41,7 @@ router.get('/new', function(req, res, next) {
 
 router.post('/new', function(req, res, next) {
   const newMessage = {
-    id: messages.length,
+    id: messages.length + 1,
     text: req.body.message,
     user: req.body.name,
     added: new Date()
@@ -58,7 +65,8 @@ router.delete('/:id', function(req, res, next) {
   }
 
   messages = messages.filter(message => message.id !== id)
-  res.status(201).redirect('/')
+  setIds()
+  res.status(201).json({message: 'post deleted'})
   console.log(messages)
 })
 

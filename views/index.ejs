@@ -10,7 +10,10 @@
     <ul class="messageboard">
       <% messages.forEach(message => { %>
         <ul class="message">
-        <li class="message_user"><%= message.user %></li>  
+        <li class="message_user">
+          <div><%= message.user %></div>
+          <div><%= message.id %></div>
+        </li>  
         <li class="message_text"><%= message.text %></li>  
         <li class="message_date"><%= message.added %></li>
         </ul>

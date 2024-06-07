@@ -41,6 +41,8 @@ label {
 .message_user {
   font-weight: bold;
   font-size: small;
+  display: flex;
+  justify-content: space-between;
 }
 
 .message_date {
